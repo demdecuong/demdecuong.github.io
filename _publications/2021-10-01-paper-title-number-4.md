@@ -4,7 +4,7 @@ collection: publications
 permalink: /publication/2021-10-01-paper-title-number-4
 excerpt: 'This paper introduce our work in ViMRC Challange'
 date: 2021-10-01
-venue: 'VLSP 2021'
+venue: 'VLSP'
 # paperurl: 'https://datacentricai.org/neurips21/papers/22_CameraReady_NeuRIPS_Data_Centric_AI.pdf'
 citation: 'Vu Hoang Tran, Minh Phuc Nguyen. “HN-BERT at VLSP 2021 - ViMRC Challenge: An empirical study
 of Vietnamese Machine Reading Comprehension with Unsupervised Context Selector and Adversarial Learning”.

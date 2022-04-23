@@ -4,8 +4,8 @@ collection: publications
 permalink: /publication/2021-01-01-paper-title-number-1
 excerpt: 'This paper is about the improving Abstractive Summarization without using Pre-trained LM.'
 date: 2021-01-01
-venue: 'ACLING 2021'
-paperurl: 'https://www.sciencedirect.com/science/article/pii/S1877050921011960'
+venue: 'ACLING'
+# paperurl: 'https://www.sciencedirect.com/science/article/pii/S1877050921011960'
 citation: "Minh-Phuc Nguyen and Nhi-Thao Tran. “Improving Abstractive Summarization With Segment-Augmented And
 Position-Awareness”. Procedia Computer Science 189 (2021). AI in Computational Linguistics, pp. 167–174.issn:
 1877-0509"
