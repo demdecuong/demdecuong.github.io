@@ -82,7 +82,7 @@ analytics:
 author:
   name             : "Nguyen Phuc Minh"
   avatar           : "profile_img.jpg"
-  bio              : "Your biography for the left-hand sidebar"
+  bio              : "Applied Scientist, NLP Researcher"
   location         : "Viet Nam"
   employer         :
   googlescholar    : "https://scholar.google.com/citations?user=CHTOv7sAAAAJ&hl=vi&authuser=2"
@@ -101,14 +101,14 @@ author:
   instagram        :
   impactstory      : #"https://profiles.impactstory.org/u/xxxx-xxxx-xxxx-xxxx"
   lastfm           :
-  linkedin         :
+  # linkedin         :
   # orcid            : "http://orcid.org/yourorcidurl"
   pinterest        :
   soundcloud       :
   stackoverflow    : # http://stackoverflow.com/users/123456/username
   steam            :
   tumblr           :
-  twitter          : "replacethistwitterhandle"
+  # twitter          : "replacethistwitterhandle"
   vine             :
   weibo            :
   xing             :
