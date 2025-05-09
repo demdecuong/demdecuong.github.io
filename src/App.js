@@ -6,6 +6,7 @@ import BlogPage from "./BlogPage"; // Import the BlogPage component
 import blog1 from "./blogPosts/blog1";
 import blog2 from "./blogPosts/blog2";
 import blog3 from "./blogPosts/blog3";
+import blog4 from "./blogPosts/blog4";
 
 // Smooth scroll for navigation
 const smoothScroll = (id) => {
@@ -162,7 +163,7 @@ function App() {
     },
   ];
 
-  const blogPosts = [blog1, blog2, blog3];
+  const blogPosts = [blog1, blog2, blog3, blog4];
 
   return (
     <Router>
