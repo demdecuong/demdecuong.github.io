@@ -7,7 +7,10 @@ import blog1 from "./blogPosts/blog1";
 import blog2 from "./blogPosts/blog2";
 import blog3 from "./blogPosts/blog3";
 import blog4 from "./blogPosts/blog4";
-
+import blog5 from "./blogPosts/blog5";
+import getProfileData from "./profileData";
+import vietnam_flag from "./flags/vietnam.png";
+import uk_flag from "./flags/uk.png";
 // Smooth scroll for navigation
 const smoothScroll = (id) => {
   const element = document.getElementById(id);
@@ -24,6 +27,8 @@ const smoothScroll = (id) => {
 
 function App() {
   const [activeSection, setActiveSection] = useState("blog");
+  const [language, setLanguage] = useState("en"); // State for language
+
   useEffect(() => {
     let timeoutId;
 
@@ -54,26 +59,11 @@ function App() {
       clearTimeout(timeoutId); // Cleanup timeout
     };
   }, []);
-  const profileData = {
-    name: "Nguyen Phuc Minh",
-    title: "AI Engineer",
-    bio: `I love turning complex ideas into real-world AI products.
-    I think like a founder, build like an engineer, and connect the dots like a systems thinker.
-    Whether I’m breaking down data silos, aligning with business goals, I bring energy, clarity, and adaptability.
-    I thrive at the intersection of tech, teamwork, and impact—always ready to turn a challenge into a solution.`,
-    contact: {
-      email: "your@email.com",
-      linkedin: "linkedin.com/in/yourprofile",
-      github: "github.com/demdecuong",
-      twitter: "twitter.com/yourhandle",
-      googlescholar: "scholar.google.com/citations?user=CHTOv7sAAAAJ&hl",
-    },
-    stats: [
-      { value: "5+", label: "Years Experience" },
-      { value: "8", label: "Projects" },
-      { value: "6", label: "Research Papers" },
-    ],
+
+  const toggleLanguage = () => {
+    setLanguage((prevLanguage) => (prevLanguage === "en" ? "vi" : "en"));
   };
+  const profileData = getProfileData(language); // Get profile data based on language
 
   const workExperience = [
     {
@@ -163,16 +153,28 @@ function App() {
     },
   ];
 
-  const blogPosts = [blog1, blog2, blog3, blog4];
+  const blogPosts = [blog1(language), blog2(language), blog3(language), blog4(language), blog5(language)];
 
   return (
     <Router>
+      <div className="app-container">
+                      {/* Language Toggle Button */}
+              {/* Language Toggle Button */}
+        <button className="language-toggle" onClick={toggleLanguage}>
+          <img
+            src={language === "en" ? vietnam_flag : uk_flag}
+            alt={language === "en" ? "Vietnamese Flag" : "USA Flag"}
+            className="flag-icon"
+          />
+          {language === "en" ? "Tiếng Việt" : "English"}
+        </button>
       <Routes>
         {/* Landing Page */}
         <Route
           path="/"
           element={
             <div className="wow-container">
+
               {/* Animated Background Elements */}
               <div className="bg-blobs">
                 <div className="blob-1"></div>
@@ -374,7 +376,7 @@ function App() {
                     {researchPapers.map((paper) => (
                       <a
                         key={paper.id}
-                        href={paper.link}
+                        href={paper.pdfLink}
                         className="research-card"
                       >
                         <div className="card-corner"></div>
@@ -423,6 +425,7 @@ function App() {
         {/* Blog Page */}
         <Route path="/blog/:id" element={<BlogPage blogPosts={blogPosts} />} />
       </Routes>
+      </div>
     </Router>
   );
 }

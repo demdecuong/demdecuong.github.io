@@ -1,4 +1,4 @@
-const blog4 = {
+const blog4 = (language = "en") => ({
   id: 4,
   title: "My first bycicle - Wise tips for new riders",
   date: "March 2025",
@@ -9,6 +9,6 @@ const blog4 = {
   content: `
     <p>This is the full content of the blog </p>
   `,
-};
+});
 
 export default blog4;

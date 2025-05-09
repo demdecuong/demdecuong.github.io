@@ -778,3 +778,43 @@ body {
   background-color: var(--primary-light);
   color: var(--light);
 }
+
+/* Language Toggle Button */
+/* Language Toggle Button */
+.language-toggle {
+  position: fixed;
+  top: 35px;
+  right: 35px;
+  background-color: #ffffff;
+  color: #333;
+  border: 2px solid #007bff;
+  border-radius: 30px;
+  padding: 5px 5px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Bring the button to the front */
+  transition: all 0.3s ease;
+}
+
+.language-toggle:hover {
+  background-color: #769ee9;
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+.language-toggle:active {
+  transform: scale(1);
+}
+
+/* Flag Icon */
+.flag-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  object-fit: cover;
+}

@@ -1,9 +1,9 @@
-const blog1 = {
+const blog1 = (language = "en") => ({
   id: 1,
-  title: "What I learned from going to the gym for 2 years",
+  title: language === "en" ? "What I learned from going to the gym for 2 years" : "Những gì tôi đã học được từ việc đi tập gym trong 2 năm",
   date: "May 2025",
   link: "/blog/1",
-  description: "Exploring WebGL, GSAP, and motion design principles for immersive experiences.",
+  description: language === "en" ? "Some unknown challenges PT wont let you know" : "Một số thử thách mà PT sẽ không cho bạn biết",
   tags: ["Animation", "WebGL", "UX"],
   featured: true,
   content: `
@@ -16,6 +16,6 @@ const blog1 = {
       <li>Rest and recovery are just as important as workouts.</li>
     </ul>
   `,
-};
+});
 
 export default blog1;
