@@ -1,0 +1,112 @@
+.blog-page {
+  display: flex;
+  gap: 2rem; /* Add spacing between the left and right sections */
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.blog-sidebar {
+  flex: 0 0 25%; /* Sidebar takes 25% of the width */
+  font-size: 0.9rem; /* Smaller font size for minimalism */
+  color: rgba(255, 255, 255, 0.7); /* Slightly dimmed text */
+}
+
+.blog-sidebar .blog-date {
+  font-size: 0.85rem;
+  color: var(--accent); /* Accent color for the date */
+  margin-bottom: 1rem;
+}
+
+.blog-sidebar .blog-summary {
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.blog-content {
+  flex: 1; /* Main content takes the remaining width */
+  font-size: 1rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 1);
+}
+
+.blog-content p {
+  margin: 0.5rem 0;
+}
+
+.blog-content img {
+  max-width: 100%;
+  height: auto;
+  margin: 1rem 0;
+  border-radius: 8px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.blog-content pre {
+  background: #282c34;
+  color: #f8f8f2;
+  padding: 0.8rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-family: 'Courier New', Courier, monospace;
+  margin: 1rem 0;
+  white-space: pre;
+  word-wrap: normal;
+}
+
+.blog-content pre code {
+  background: none;
+  /* color: var(--accent); */
+  padding: 0;
+  white-space: inherit;
+}
+
+.blog-content h2 {
+  font-size: 1.5rem;
+  margin: 1rem 0;
+}
+
+.blog-content code {
+  font-family: 'Courier New', Courier, monospace;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.1rem 0.3rem;
+  border-radius: 4px;
+  color: var(--accent);
+}
+
+.blog-meta {
+  margin-bottom: 1.5rem; /* Add more space below the meta section */
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7); /* Lighter color for the meta section */
+}
+
+.blog-meta .blog-date {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6); /* Even lighter color for the date */
+  margin-bottom: 0.5rem; /* Add spacing below the date */
+}
+
+.blog-meta .blog-summary {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.7); /* Lighter color for the summary */
+  margin-bottom: 1rem; /* Add spacing below the summary */
+}
+
+.blog-content img {
+  display: block; /* Makes the image a block element */
+  margin: 1rem auto; /* Centers the image horizontally */
+  max-width: 100%; /* Ensures the image does not overflow */
+  height: auto; /* Maintains the aspect ratio */
+  border-radius: 8px; /* Adds rounded corners */
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
+}
+
+.separator {
+    width: 99%; /* Adjust the width as needed */
+    border: none;
+    border-top: 1px solid #ccc; /* Adjust color and thickness */
+    margin: 20px auto; /* Center the line horizontally */
+    margin-bottom: 50px;
+    color: rgba(255, 255, 255, 0.6); /* Even lighter color for the date */
+}
