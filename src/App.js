@@ -92,7 +92,7 @@ function App() {
     },
     {
       id: 3,
-      role: "AI Engineer",
+      role: "AI/Data Scientist",
       company: "FPT Software AI Center x AIA Vietnam",
       duration: "2022 - 2024",
       description:
@@ -126,6 +126,7 @@ function App() {
         "Pioneered ViHealthBERT, the first domain-specific pre-trained language model for Vietnamese healthcare, setting new benchmarks in biomedical and clinical NLP tasks.",
       tags: ["BERT", "Low-resource", "NER"],
       citation: "Cited 10+ times",
+      image: "images/vihealthbert.png", // Add image path
     },
     {
       id: 2,
@@ -141,6 +142,7 @@ function App() {
         "Enhanced abstractive summarization by integrating segment-level context and position-aware attention to improve coherence and relevance.",
       tags: ["Abstractive Summarization", "End-to-end module"],
       award: "First time publishing",
+      image: "images/segment.png", // Add image path
     },
     {
       id: 3,
@@ -154,6 +156,7 @@ function App() {
       description:
         "The first Vietnamese medical question dataset to advance healthcare dialogue systems and medical question answering in low-resource settings.",
       tags: ["Dataset", "healthcare", "NER"],
+      image: "images/vimq.png", // Add image path
     },
   ];
 
@@ -168,8 +171,6 @@ function App() {
   const visibleExperience = showAllExperience
     ? workExperience // Show all items if "Show More" is clicked
     : workExperience.slice(0, 2); // Show only the first 2 items by default
-
-
 
   return (
     <Router>
@@ -403,8 +404,15 @@ function App() {
                           key={paper.id}
                           href={paper.pdfLink}
                           className="research-card"
+                          target="_blank"
+                          rel="noopener noreferrer"
                         >
                           <div className="card-corner"></div>
+                          <img
+                            src={paper.image}
+                            // alt={paper.title}
+                            className="research-image"
+                          />
                           <h3 className="card-title">{paper.title}</h3>
                           <div className="paper-meta">
                             <span className="conference">
@@ -412,9 +420,6 @@ function App() {
                             </span>
                             <span className="year">{paper.year}</span>
                           </div>
-                          <p className="paper-description">
-                            {paper.description}
-                          </p>
                           <div className="paper-footer">
                             <div className="paper-tags">
                               {paper.tags.map((tag, index) => (

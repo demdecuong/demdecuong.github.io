@@ -1,6 +1,6 @@
 const getProfileData = (language = "en") => ({
   name: language === "en" ? "Nguyen Phuc Minh": "Nguyễn Phúc Minh",
-  title: language === "en" ? "AI Engineer" : "Kỹ sư AI",
+  title: language === "en" ? "AI Engineer" : "AI Dev Quèn",
   bio:
     language === "en"
       ? `I love turning complex ideas into real-world AI products.
