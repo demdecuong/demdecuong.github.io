@@ -818,3 +818,26 @@ body {
   border-radius: 50%;
   object-fit: cover;
 }
+
+/* Show More Button */
+.show-more-btn {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color:  var(--primary-light); /* Green Bianchi */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.show-more-btn:hover {
+  background-color: var(--accent); /* Darker Green Bianchi for hover */
+}
+
+.show-more-btn:active {
+  background-color:var(--accent); /* Even darker Green Bianchi for active state */
+}

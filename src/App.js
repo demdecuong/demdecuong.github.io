@@ -28,6 +28,10 @@ const smoothScroll = (id) => {
 function App() {
   const [activeSection, setActiveSection] = useState("blog");
   const [language, setLanguage] = useState("en"); // State for language
+  const [showAllExperience, setShowAllExperience] = useState(false); // State to toggle "Show More"
+  const toggleShowMore = () => {
+    setShowAllExperience((prev) => !prev);
+  };
 
   useEffect(() => {
     let timeoutId;
@@ -153,13 +157,25 @@ function App() {
     },
   ];
 
-  const blogPosts = [blog1(language), blog2(language), blog3(language), blog4(language), blog5(language)];
+  const blogPosts = [
+    blog1(language),
+    blog2(language),
+    blog3(language),
+    blog4(language),
+    blog5(language),
+  ];
+
+  const visibleExperience = showAllExperience
+    ? workExperience // Show all items if "Show More" is clicked
+    : workExperience.slice(0, 2); // Show only the first 2 items by default
+
+
 
   return (
     <Router>
       <div className="app-container">
-                      {/* Language Toggle Button */}
-              {/* Language Toggle Button */}
+        {/* Language Toggle Button */}
+        {/* Language Toggle Button */}
         <button className="language-toggle" onClick={toggleLanguage}>
           <img
             src={language === "en" ? vietnam_flag : uk_flag}
@@ -168,263 +184,279 @@ function App() {
           />
           {language === "en" ? "Tiếng Việt" : "English"}
         </button>
-      <Routes>
-        {/* Landing Page */}
-        <Route
-          path="/"
-          element={
-            <div className="wow-container">
+        <Routes>
+          {/* Landing Page */}
+          <Route
+            path="/"
+            element={
+              <div className="wow-container">
+                {/* Animated Background Elements */}
+                <div className="bg-blobs">
+                  <div className="blob-1"></div>
+                  <div className="blob-2"></div>
+                </div>
 
-              {/* Animated Background Elements */}
-              <div className="bg-blobs">
-                <div className="blob-1"></div>
-                <div className="blob-2"></div>
-              </div>
+                {/* Floating Navigation */}
+                <nav className="floating-nav">
+                  <button
+                    className={`nav-btn ${
+                      activeSection === "blog" ? "active" : ""
+                    }`}
+                    onClick={() => {
+                      setActiveSection("blog"); // Update the active section
+                      smoothScroll("blog"); // Smooth scroll to the blog section
+                    }}
+                  >
+                    <span className="nav-icon">✍️</span>
+                    <span className="nav-text">Blog</span>
+                  </button>
+                  <button
+                    className={`nav-btn ${
+                      activeSection === "experience" ? "active" : ""
+                    }`}
+                    onClick={() => {
+                      setActiveSection("experience"); // Update the active section
+                      smoothScroll("experience"); // Smooth scroll to the experience section
+                    }}
+                  >
+                    <span className="nav-icon">💼</span>
+                    <span className="nav-text">Experience</span>
+                  </button>
+                  <button
+                    className={`nav-btn ${
+                      activeSection === "research" ? "active" : ""
+                    }`}
+                    onClick={() => {
+                      setActiveSection("research"); // Update the active section
+                      smoothScroll("research"); // Smooth scroll to the research section
+                    }}
+                  >
+                    <span className="nav-icon">🔬</span>
+                    <span className="nav-text">Research</span>
+                  </button>
+                </nav>
 
-              {/* Floating Navigation */}
-              <nav className="floating-nav">
-                <button
-                  className={`nav-btn ${
-                    activeSection === "blog" ? "active" : ""
-                  }`}
-                  onClick={() => {
-                    setActiveSection("blog"); // Update the active section
-                    smoothScroll("blog"); // Smooth scroll to the blog section
-                  }}
-                >
-                  <span className="nav-icon">✍️</span>
-                  <span className="nav-text">Blog</span>
-                </button>
-                <button
-                  className={`nav-btn ${
-                    activeSection === "experience" ? "active" : ""
-                  }`}
-                  onClick={() => {
-                    setActiveSection("experience"); // Update the active section
-                    smoothScroll("experience"); // Smooth scroll to the experience section
-                  }}
-                >
-                  <span className="nav-icon">💼</span>
-                  <span className="nav-text">Experience</span>
-                </button>
-                <button
-                  className={`nav-btn ${
-                    activeSection === "research" ? "active" : ""
-                  }`}
-                  onClick={() => {
-                    setActiveSection("research"); // Update the active section
-                    smoothScroll("research"); // Smooth scroll to the research section
-                  }}
-                >
-                  <span className="nav-icon">🔬</span>
-                  <span className="nav-text">Research</span>
-                </button>
-              </nav>
+                {/* Main Content */}
+                <main className="wow-layout">
+                  {/* Profile Section */}
+                  <section className="profile-glass">
+                    <div className="profile-image-container">
+                      <img
+                        src={profilePhoto}
+                        alt="Profile"
+                        className="profile-image"
+                      />
+                      <div className="image-border"></div>
+                      <div className="image-highlight"></div>
+                    </div>
 
-              {/* Main Content */}
-              <main className="wow-layout">
-                {/* Profile Section */}
-                <section className="profile-glass">
-                  <div className="profile-image-container">
-                    <img
-                      src={profilePhoto}
-                      alt="Profile"
-                      className="profile-image"
-                    />
-                    <div className="image-border"></div>
-                    <div className="image-highlight"></div>
-                  </div>
+                    <div className="profile-content">
+                      <h1 className="profile-name">
+                        <span className="name-gradient">
+                          {profileData.name}
+                        </span>
+                        <span className="title-sparkle">
+                          {profileData.title}
+                        </span>
+                      </h1>
 
-                  <div className="profile-content">
-                    <h1 className="profile-name">
-                      <span className="name-gradient">{profileData.name}</span>
-                      <span className="title-sparkle">{profileData.title}</span>
-                    </h1>
+                      {profileData.bio.split("\n").map((line, idx) => (
+                        <p className="profile-bio" key={idx}>
+                          {line}
+                        </p>
+                      ))}
+                      <div className="profile-stats">
+                        {profileData.stats.map((stat, index) => (
+                          <div key={index} className="stat-card">
+                            <div className="stat-value">{stat.value}</div>
+                            <div className="stat-label">{stat.label}</div>
+                          </div>
+                        ))}
+                      </div>
 
-                    {profileData.bio.split("\n").map((line, idx) => (
-                      <p className="profile-bio" key={idx}>
-                        {line}
-                      </p>
-                    ))}
-                    <div className="profile-stats">
-                      {profileData.stats.map((stat, index) => (
-                        <div key={index} className="stat-card">
-                          <div className="stat-value">{stat.value}</div>
-                          <div className="stat-label">{stat.label}</div>
+                      <div className="profile-links">
+                        <a
+                          href={`mailto:${profileData.contact.email}`}
+                          className="social-link email"
+                        >
+                          <i className="fas fa-envelope"></i>
+                        </a>
+                        <a
+                          href={`https://${profileData.contact.linkedin}`}
+                          className="social-link linkedin"
+                        >
+                          <i className="fab fa-linkedin-in"></i>
+                        </a>
+                        <a
+                          href={`https://${profileData.contact.github}`}
+                          className="social-link github"
+                        >
+                          <i className="fab fa-github"></i>
+                        </a>
+                        <a
+                          href={`https://${profileData.contact.twitter}`}
+                          className="social-link twitter"
+                        >
+                          <i className="fab fa-twitter"></i>
+                        </a>
+                        <a
+                          href={`https://${profileData.contact.googlescholar}`}
+                          className="social-link googlescholar"
+                        >
+                          <i className="fab fa-google"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </section>
+
+                  {/* Blog Section */}
+                  <section id="blog" className="content-section">
+                    <h2 className="section-title">
+                      <span className="title-decoration"></span>
+                      Featured Writings
+                    </h2>
+                    <div className="blog-carousel">
+                      {blogPosts.map((post) => (
+                        <Link
+                          key={post.id}
+                          to={post.link}
+                          className={`blog-card ${
+                            post.featured ? "featured" : ""
+                          } ${post.popular ? "popular" : ""}`}
+                        >
+                          <div className="card-glow"></div>
+                          <h3 className="card-title">{post.title}</h3>
+                          <p className="post-date">{post.date}</p>
+                          <p className="post-excerpt">{post.description}</p>
+                          <div className="post-tags">
+                            {post.tags.map((tag, index) => (
+                              <span key={index} className="tag">
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                          {post.featured && (
+                            <div className="featured-label">Editor's Pick</div>
+                          )}
+                          {post.popular && (
+                            <div className="popular-label">Top Read</div>
+                          )}
+                        </Link>
+                      ))}
+                    </div>
+                  </section>
+
+                  {/* Professional Journey Section */}
+                  <section id="experience" className="content-section">
+                    <h2 className="section-title">
+                      <span className="title-decoration"></span>
+                      Professional Journey
+                    </h2>
+
+                    <div className="timeline">
+                      {visibleExperience.map((job) => (
+                        <div key={job.id} className="timeline-card">
+                          <div className="timeline-dot"></div>
+                          <div className="timeline-content">
+                            <div className="job-header">
+                              <h3>{job.role}</h3>
+                              <div className="job-meta">
+                                <span className="company">{job.company}</span>
+                                <span className="duration">{job.duration}</span>
+                              </div>
+                            </div>
+                            <p className="job-description">{job.description}</p>
+                            {job.highlight && (
+                              <div className="job-highlight">
+                                <span className="highlight-star">★</span>
+                                {job.highlight}
+                              </div>
+                            )}
+                            <div className="job-tags">
+                              {job.tags.map((tag, index) => (
+                                <span key={index} className="tag">
+                                  {tag}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
                         </div>
                       ))}
                     </div>
 
-                    <div className="profile-links">
-                      <a
-                        href={`mailto:${profileData.contact.email}`}
-                        className="social-link email"
-                      >
-                        <i className="fas fa-envelope"></i>
-                      </a>
-                      <a
-                        href={`https://${profileData.contact.linkedin}`}
-                        className="social-link linkedin"
-                      >
-                        <i className="fab fa-linkedin-in"></i>
-                      </a>
-                      <a
-                        href={`https://${profileData.contact.github}`}
-                        className="social-link github"
-                      >
-                        <i className="fab fa-github"></i>
-                      </a>
-                      <a
-                        href={`https://${profileData.contact.twitter}`}
-                        className="social-link twitter"
-                      >
-                        <i className="fab fa-twitter"></i>
-                      </a>
-                      <a
-                        href={`https://${profileData.contact.googlescholar}`}
-                        className="social-link googlescholar"
-                      >
-                        <i className="fab fa-google"></i>
-                      </a>
-                    </div>
-                  </div>
-                </section>
+                    {/* Show More Button */}
+                    <button className="show-more-btn" onClick={toggleShowMore}>
+                      {showAllExperience ? "Show Less" : "Show More"}
+                    </button>
+                  </section>
 
-                {/* Blog Section */}
-                <section id="blog" className="content-section">
-                  <h2 className="section-title">
-                    <span className="title-decoration"></span>
-                    Featured Writings
-                  </h2>
-                  <div className="blog-carousel">
-                    {blogPosts.map((post) => (
-                      <Link
-                        key={post.id}
-                        to={post.link}
-                        className={`blog-card ${
-                          post.featured ? "featured" : ""
-                        } ${post.popular ? "popular" : ""}`}
-                      >
-                        <div className="card-glow"></div>
-                        <h3 className="card-title">{post.title}</h3>
-                        <p className="post-date">{post.date}</p>
-                        <p className="post-excerpt">{post.description}</p>
-                        <div className="post-tags">
-                          {post.tags.map((tag, index) => (
-                            <span key={index} className="tag">
-                              {tag}
+                  {/* Research Section */}
+                  <section id="research" className="content-section">
+                    <h2 className="section-title">
+                      <span className="title-decoration"></span>
+                      Academic Contributions
+                    </h2>
+
+                    <div className="research-grid">
+                      {researchPapers.map((paper) => (
+                        <a
+                          key={paper.id}
+                          href={paper.pdfLink}
+                          className="research-card"
+                        >
+                          <div className="card-corner"></div>
+                          <h3 className="card-title">{paper.title}</h3>
+                          <div className="paper-meta">
+                            <span className="conference">
+                              {paper.conference}
                             </span>
-                          ))}
-                        </div>
-                        {post.featured && (
-                          <div className="featured-label">Editor's Pick</div>
-                        )}
-                        {post.popular && (
-                          <div className="popular-label">Top Read</div>
-                        )}
-                      </Link>
-                    ))}
-                  </div>
-                </section>
-
-                <section id="experience" className="content-section">
-                  <h2 className="section-title">
-                    <span className="title-decoration"></span>
-                    Professional Journey
-                  </h2>
-
-                  <div className="timeline">
-                    {workExperience.map((job) => (
-                      <div key={job.id} className="timeline-card">
-                        <div className="timeline-dot"></div>
-                        <div className="timeline-content">
-                          <div className="job-header">
-                            <h3>{job.role}</h3>
-                            <div className="job-meta">
-                              <span className="company">{job.company}</span>
-                              <span className="duration">{job.duration}</span>
+                            <span className="year">{paper.year}</span>
+                          </div>
+                          <p className="paper-description">
+                            {paper.description}
+                          </p>
+                          <div className="paper-footer">
+                            <div className="paper-tags">
+                              {paper.tags.map((tag, index) => (
+                                <span key={index} className="tag">
+                                  {tag}
+                                </span>
+                              ))}
+                            </div>
+                            <div className="paper-links">
+                              <a
+                                href={paper.pdfLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="paper-icon pdf-icon"
+                              >
+                                <i className="fas fa-file-pdf"></i>
+                              </a>
+                              <a
+                                href={paper.githubLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="paper-icon github-icon"
+                              >
+                                <i className="fab fa-github"></i>
+                              </a>
                             </div>
                           </div>
-                          <p className="job-description">{job.description}</p>
-                          {job.highlight && (
-                            <div className="job-highlight">
-                              <span className="highlight-star">★</span>
-                              {job.highlight}
-                            </div>
-                          )}
-                          <div className="job-tags">
-                            {job.tags.map((tag, index) => (
-                              <span key={index} className="tag">
-                                {tag}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </section>
+                        </a>
+                      ))}
+                    </div>
+                  </section>
+                </main>
+              </div>
+            }
+          />
 
-                {/* Research Section */}
-                <section id="research" className="content-section">
-                  <h2 className="section-title">
-                    <span className="title-decoration"></span>
-                    Academic Contributions
-                  </h2>
-
-                  <div className="research-grid">
-                    {researchPapers.map((paper) => (
-                      <a
-                        key={paper.id}
-                        href={paper.pdfLink}
-                        className="research-card"
-                      >
-                        <div className="card-corner"></div>
-                        <h3 className="card-title">{paper.title}</h3>
-                        <div className="paper-meta">
-                          <span className="conference">{paper.conference}</span>
-                          <span className="year">{paper.year}</span>
-                        </div>
-                        <p className="paper-description">{paper.description}</p>
-                        <div className="paper-footer">
-                          <div className="paper-tags">
-                            {paper.tags.map((tag, index) => (
-                              <span key={index} className="tag">
-                                {tag}
-                              </span>
-                            ))}
-                          </div>
-                          <div className="paper-links">
-                            <a
-                              href={paper.pdfLink}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="paper-icon pdf-icon"
-                            >
-                              <i className="fas fa-file-pdf"></i>
-                            </a>
-                            <a
-                              href={paper.githubLink}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="paper-icon github-icon"
-                            >
-                              <i className="fab fa-github"></i>
-                            </a>
-                          </div>
-                        </div>
-                      </a>
-                    ))}
-                  </div>
-                </section>
-              </main>
-            </div>
-          }
-        />
-
-        {/* Blog Page */}
-        <Route path="/blog/:id" element={<BlogPage blogPosts={blogPosts} />} />
-      </Routes>
+          {/* Blog Page */}
+          <Route
+            path="/blog/:id"
+            element={<BlogPage blogPosts={blogPosts} />}
+          />
+        </Routes>
       </div>
     </Router>
   );
